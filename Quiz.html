@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Quiz </title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#111827;
+    color:#f9fafb;
+}
+
+/* NAV */
+header{
+    background:#020617;
+    padding:15px 30px;
+}
+
+/* GRID DASHBOARD */
+.dashboard{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+    padding:30px;
+}
+
+/* BOX */
+.box{
+    background:#1f2933;
+    padding:20px;
+    border-radius:12px;
+}
+
+/* TITLE */
+.box h3{
+    margin-top:0;
+    color:#22c55e;
+}
+
+/* FILE INPUT */
+input{
+    margin-top:10px;
+}
+
+/* BUTTON */
+button{
+    display:block;
+    margin-top:10px;
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    background:#22c55e;
+    color:black;
+    cursor:pointer;
+}
+
+/* ACTIVITY LIST */
+.list{
+    margin-top:10px;
+}
+
+.list div{
+    background:#374151;
+    padding:10px;
+    margin-top:5px;
+    border-radius:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>Records</h2>
+</header>
+
+<div class="dashboard">
+
+<!-- QUIZ BOX -->
+<div class="box">
+<h3>Quiz Upload</h3>
+<input type="file">
+<button>Submit</button>
+</div>
+
+<!-- EXAM BOX -->
+<div class="box">
+<h3>Exam Upload</h3>
+<input type="file">
+<button>Submit</button>
+</div>
+
+<!-- ACTIVITIES -->
+<div class="box">
+<h3>Activities</h3>
+<div class="list">
+<div>Activity 1</div>
+<div>Activity 2</div>
+<div>Activity 3</div>
+</div>
+</div>
+
+<!-- STATUS -->
+<div class="box">
+<h3>Status</h3>
+<p>No submissions yet.</p>
+</div>
+
+</div>
+
+</body>
+</html>
