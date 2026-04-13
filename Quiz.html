@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Quiz </title>
+<title>Quiz Records</title>
 
 <style>
-
 body{
     margin:0;
     font-family:'Segoe UI', sans-serif;
@@ -14,13 +13,11 @@ body{
     color:#f9fafb;
 }
 
-/* NAV */
 header{
     background:#020617;
     padding:15px 30px;
 }
 
-/* GRID DASHBOARD */
 .dashboard{
     display:grid;
     grid-template-columns: 1fr 1fr;
@@ -28,27 +25,23 @@ header{
     padding:30px;
 }
 
-/* BOX */
 .box{
     background:#1f2933;
     padding:20px;
     border-radius:12px;
 }
 
-/* TITLE */
 .box h3{
     margin-top:0;
     color:#22c55e;
 }
 
-/* FILE INPUT */
 input{
     margin-top:10px;
+    display:block;
 }
 
-/* BUTTON */
 button{
-    display:block;
     margin-top:10px;
     padding:8px 15px;
     border:none;
@@ -58,7 +51,6 @@ button{
     cursor:pointer;
 }
 
-/* ACTIVITY LIST */
 .list{
     margin-top:10px;
 }
@@ -66,10 +58,21 @@ button{
 .list div{
     background:#374151;
     padding:10px;
-    margin-top:5px;
-    border-radius:5px;
+    margin-top:10px;
+    border-radius:8px;
 }
 
+.list img{
+    width:100px;
+    height:auto;
+    margin-top:8px;
+    border-radius:6px;
+}
+
+.small{
+    font-size:12px;
+    opacity:0.8;
+}
 </style>
 </head>
 
@@ -81,21 +84,22 @@ button{
 
 <div class="dashboard">
 
-<!-- QUIZ BOX -->
 <div class="box">
 <h3>Quiz Upload</h3>
-<input type="file">
-<button>Submit</button>
+<input type="file" id="quizFile" accept="image/*">
+<input type="number" id="quizScore" placeholder="Score">
+<input type="number" id="quizOutOf" placeholder="Out of">
+<button onclick="submitFile('quizFile','quizScore','quizOutOf','Quiz')">Submit Quiz</button>
 </div>
 
-<!-- EXAM BOX -->
 <div class="box">
 <h3>Exam Upload</h3>
-<input type="file">
-<button>Submit</button>
+<input type="file" id="examFile" accept="image/*">
+<input type="number" id="examScore" placeholder="Score">
+<input type="number" id="examOutOf" placeholder="Out of">
+<button onclick="submitFile('examFile','examScore','examOutOf','Exam')">Submit Exam</button>
 </div>
 
-<!-- ACTIVITIES -->
 <div class="box">
 <h3>Activities</h3>
 <div class="list">
@@ -105,13 +109,87 @@ button{
 </div>
 </div>
 
-<!-- STATUS -->
 <div class="box">
 <h3>Status</h3>
-<p>No submissions yet.</p>
+<div id="statusList" class="list"></div>
+<button onclick="clearData()">Clear Data</button>
+</div>
+
+<div class="box">
+<h3>Calculator</h3>
+<p>Open calculator tool</p>
+<a href="lator.html" target="_blank">
+<button>Go to Calculator</button>
+</a>
 </div>
 
 </div>
+
+<script>
+window.onload = function() {
+    renderStatus();
+};
+
+function submitFile(fileId, scoreId, outOfId, type) {
+    const fileInput = document.getElementById(fileId);
+    const score = document.getElementById(scoreId).value;
+    const outOf = document.getElementById(outOfId).value;
+
+    if (fileInput.files.length === 0) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const imageData = e.target.result;
+
+        let data = JSON.parse(localStorage.getItem("submissions")) || [];
+
+        data.push({
+            type,
+            image: imageData,
+            score,
+            outOf
+        });
+
+        localStorage.setItem("submissions", JSON.stringify(data));
+        renderStatus();
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
+}
+
+function renderStatus() {
+    const list = document.getElementById("statusList");
+    list.innerHTML = "";
+
+    let data = JSON.parse(localStorage.getItem("submissions")) || [];
+
+    if (data.length === 0) {
+        list.innerHTML = "<div>No submissions yet.</div>";
+        return;
+    }
+
+    data.forEach(item => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <strong>${item.type}</strong><br>
+            <img src="${item.image}"><br>
+            <div class="small">Score: ${item.score} / ${item.outOf}</div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+function clearData() {
+    localStorage.removeItem("submissions");
+    renderStatus();
+}
+
+function openCalculator() {
+    window.location.href = "calculator.html";
+}
+</script>
 
 </body>
 </html>
