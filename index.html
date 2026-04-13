@@ -1,124 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cas Matthew Portfolio</title>
+<!-- QUIZ -->
+<div class="carousel-item active">
+<h3>Quizzes and LAB</h3>
 
-<style>
-
-body{
-    margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background:#0f172a;
-    color:#e2e8f0;
-}
-
-
-header{
-    background:#020617;
-    padding:15px 40px;
-}
-
-nav{
-    display:flex;
-    justify-content:space-between;
-}
-
-
-.container{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:90vh;
-    gap:50px;
-    padding:20px;
-}
-
-
-.left img{
-    width:220px;
-    border-radius:20px;
-    box-shadow:0 0 20px #38bdf8;
-}
-
-.right{
-    max-width:500px;
-}
-
-.right h1{
-    color:#38bdf8;
-}
-
-.info{
-    background:#020617;
-    padding:20px;
-    border-radius:10px;
-    margin-top:15px;
-}
-
-.btn{
-    margin-top:15px;
-    padding:10px 20px;
-    background:#38bdf8;
-    border:none;
-    border-radius:8px;
-    color:black;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:#0ea5e9;
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-<nav>
-<h2>Cas Matthew
-</h2>
-<div>
-<a href="index.html">Home</a>
-<a href="Quiz.html">Records</a>
-</div>
-</nav>
-</header>
-
-<div class="container">
-
-<!-- LEFT -->
-<div class="left">
-<img src="casmatthew.jpg">
+<div class="upload-box">
+<input type="file" id="quizUpload" accept="image/*"><br><br>
+<input type="number" id="quizScore" placeholder="Score"><br><br>
+<button onclick="quizAdd()">Submit</button>
 </div>
 
-<!-- RIGHT -->
-<div class="right">
-<h1>
-Cas matthew
-</h1>
-<p>BSCS Student | Future Web Developer</p>
+<p>Total: <span id="quizCount">0</span></p>
+<p>Average: <span id="quizAvg">0</span></p>
 
-<div class="info">
-<p><b>Student No:</b> 251101327</p>
-<p><b>Course:</b> BSCS-1D</p>
+<div id="quizPreview"></div>
 </div>
 
-<div class="info">
-<p>
-I enjoy coding and improving myself daily.
-My goal is to create websites    that people will remember.
-</p>
+<!-- EXAM -->
+<div class="carousel-item">
+<h3>Exams</h3>
+
+<div class="upload-box">
+<input type="file" id="examUpload" accept="image/*"><br><br>
+<input type="number" id="examScore" placeholder="Score"><br><br>
+<button onclick="examAdd()">Submit</button>
 </div>
 
-<button class="btn">Explore More</button>
+<p>Total: <span id="examCount">0</span></p>
+<p>Average: <span id="examAvg">0</span></p>
 
+<div id="examPreview"></div>
 </div>
-
-</div>
-
-</body>
-</html>s
